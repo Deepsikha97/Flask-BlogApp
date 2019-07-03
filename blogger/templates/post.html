@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Blog Application</title>
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <!--<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <!--<link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">-->
+    <link href="{{ url_for('static', filename='all.min.css') }}" rel="stylesheet" type="text/css">
+
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+   <!--  <link rel="stylesheet" type="text/css" href="static/css/styles.css">-->
+    <link href="{{ url_for('static', filename='styles.css.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='new_blog.min.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+       <a class="navbar-brand" href="">{{ session['username'] }}</a>
+      <!-- print(user.username) -->
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('addpost')}}">Add Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('about_user') }}">About User</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+      <header class="masthead" style="background-image: url('{{ url_for('static', filename='blog-post-3.jpeg') }}')">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                <h1>View all posts</h1>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+<!--Main Content-->
+<!-- Main Content -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <h3 class="flashes" align="center" style="color:#337ab7">{{ message }}</h3>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+          {% for i in post %}
+            <div class="post-preview">
+              <a href="{{ url_for('post', post_id=i.pid) }}">
+                <h2 class="post-title">
+                  {{ i.title }}
+                </h2>
+              </a>
+              {% for j in user %}
+                 {% if j.uid == i.puid %}
+                      <p class="post-meta">Posted by {{ j.username }}</p>
+                      <a class="btn btn-primary" id="update"  href="{{ url_for('update_post',pid=i.pid,post_owner=j.username) }}" aria-expanded="false">Update</a>
+                      <a class="btn btn-primary" id="del" href="{{ url_for('delete_post',pid=i.pid,post_owner=j.username) }}">Delete</a>
+
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+            <hr>
+          </div>
+        </div>
+      </div>
+
+
+<hr>
+<!-- Footer -->
+   <footer>
+     <div class="container">
+       <div class="row">
+         <div class="col-lg-8 col-md-10 mx-auto">
+           <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+         </div>
+       </div>
+     </div>
+   </footer>
+
+
+     <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+      <script src="{{ url_for('static', filename='new_blog.min.js') }}"></script>
+
+  </body>
+</html>

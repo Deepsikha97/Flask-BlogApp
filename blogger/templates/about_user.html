@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Blog Application</title>
+  <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+  <!--<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
+  <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+  <!--<link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">-->
+  <link href="{{ url_for('static', filename='all.min.css') }}" rel="stylesheet" type="text/css">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+ <!--  <link rel="stylesheet" type="text/css" href="static/css/styles.css">-->
+  <link href="{{ url_for('static', filename='styles.css.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='new_blog.min.css') }}" rel="stylesheet">
+
+  </head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+     <a class="navbar-brand" href="">{{ session['username'] }}</a>
+    <!-- print(user.username) -->
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('addpost')}}">Add Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('show_posts') }}">Posts</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="edit_pro">
+	<a class="btn btn-lg btn-primary btn-block">Edit Profile</a>
+</div>
+
+
+<div class="row">
+	<div class="col-md-8">
+  		<table align="right">
+			<tr>
+	  			<td> <h4>First Name</h4></td>
+	  			<td>{{user.firstname}}</td>
+			</tr>
+			<tr>
+	  			<td> <h4>Last Name</h4></td>
+	  			<td>{{user.lastname}}</td>
+			</tr>
+			<tr>
+	  			<td><h4>User Name</h4></td>
+	  			<td>{{user.username}}</td>
+			</tr>
+			<tr>
+	  			<td><h4>Email</h4></td>
+	  			<td>{{user.email}}</td>
+			</tr>
+			<tr>
+	  			<td><h4>Password</h4></td>
+	  			<td>**********</td>
+			</tr>
+  		</table>
+	</div>
+</div>
+
+</body>
+</html>

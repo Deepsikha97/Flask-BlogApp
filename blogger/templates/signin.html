@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Blog Application</title>
+     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <!--<link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">-->
+    <link href="{{ url_for('static', filename='all.min.css') }}" rel="stylesheet" type="text/css">
+
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+   <!--  <link rel="stylesheet" type="text/css" href="static/css/styles.css">-->
+    <link href="{{ url_for('static', filename='styles.css.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='new_blog.min.css') }}" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href={{ url_for('index') }}>Deepsikha</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('signin') }}">Sign In</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+
+  <!-- Page Header -->
+      <header class="masthead" style="background-image: url('{{ url_for('static', filename='home-bg.jpg') }}')">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                <h1>Please Sign In</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+<div class="container">
+    <form class="form-signin" action="" method="POST">
+        <!-- <h2 class="form-signin-heading">Please Sign In</h2> -->
+        {{ signinform.email(placeholder="Email",id="inputEmail", class="form-control", autofocus="") }}
+        {{ signinform.password(placeholder="Password",id="inputPassword", class="form-control", required="") }}
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        {{ signinform.submit(class="btn btn-lg btn-primary btn-block")}}
+              <div class="noacc">
+        Don't have an account! <a href="{{ url_for('signup') }}">Sign Up Here</a>
+      </div>
+      </form>
+
+</div>
+
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+ <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+ <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+ <script src="{{ url_for('static', filename='new_blog.min.js') }}"></script>
+    <!--<script src="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.js"></script>-->
+</body>
+</html>
